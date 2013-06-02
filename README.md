@@ -1,6 +1,6 @@
 # 100 Most Frequent Words
 
-A mini project aiming to set up web pages containing the 100 most frequent words for different languages. Currently it's designed to be lightweight, fetching data directly form online frequency lists, meaning that no data is stored locally. This also means that data is scraped and loaded every time the page is loaded, which of course is really slow! 
+A mini project aiming to set up web pages containing the 100 most frequent words for different languages. Currently it's designed to be lightweight, fetching data directly from online frequency lists, meaning that no data is stored locally. This also means that data is scraped every time the page is loaded, which of course is really slow!
 
 The next steps are to:
 1. Create an appealing stylesheet
