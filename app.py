@@ -1,7 +1,8 @@
 from bs4 import BeautifulSoup as bs
 import urllib2
-from bottle import route, run
+from bottle import Bottle
 
+application = Bottle(__name__)
 URL = { 'Spanish' : 'http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/Spanish1000',
         'Italian' : 'http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/Italian1000',
         'French' : 'http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/French_wordlist_opensubtitles_5000'}
@@ -45,16 +46,17 @@ def create_html(language):
     </html>''' % (title, title, content)
     return html
 
-@route('/spanish')
+@application.route('/spanish')
 def spanish():
     return create_html('Spanish')
 
-@route('/italian')
+@application.route('/italian')
 def italian():
     return create_html('Italian')
 
-@route('/french')
+@application.route('/french')
 def french():
     return create_html('French')
 
-run(host='localhost', port=8080, debug=True)
+if __name__ == '__main__':
+	application.run(host='localhost', port=8080, debug=True)
