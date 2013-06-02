@@ -50,6 +50,22 @@ def create_html(language):
 def static(path):
     return bottle.static_file(path, root='static')
 
+@application.route('/')
+def static():
+    return '''
+<html>
+    	<head>
+		<title>Most Frequent Words</title>
+	</head>
+	<body>
+		<ul>
+		<li><a href='/french'>French</a></li>
+		<li><a href='/italian'>Italian</a></li>
+		<li><a href='/spanish'>Spanish</a></li>
+		</ul>
+	</body>
+</html>'''
+
 @application.route('/spanish')
 def spanish():
     return create_html('Spanish')
