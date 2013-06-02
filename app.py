@@ -46,6 +46,10 @@ def create_html(language):
     </html>''' % (title, title, content)
     return html
 
+@application.route('/static/:path#.+#', name='static')
+def static(path):
+    return bottle.static_file(path, root='static')
+
 @application.route('/spanish')
 def spanish():
     return create_html('Spanish')
