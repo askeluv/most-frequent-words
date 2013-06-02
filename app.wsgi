@@ -1,5 +1,7 @@
 import os
-# Change working directory so relative paths (and template lookup) work again
-os.chdir(os.path.dirname(__file__))
+import site
+p = os.path.dirname(__file__)
+site.addsitedir(p)
+os.chdir(p)
 
 from app import application
