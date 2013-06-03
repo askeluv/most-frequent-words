@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup as bs
 import urllib2
-from bottle import Bottle
+from bottle import Bottle, static_file, template
 
 application = Bottle(__name__)
 URL = { 'Spanish' : 'http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/Spanish1000',
@@ -23,48 +23,20 @@ def get_content_from_web(language):
     # make the relative paths absolute, and add language #
     for w in words:
         w['href'] = 'http://en.wiktionary.org%s#%s' % (w['href'],language)
-    html_content = []
-    html_content.append('<ol>')
-    for w in words:
-        html_content.append('\t<li>%s</li>' % w)
-    html_content.append('</ol>')
-    return '\n'.join(html_content)
+    return words
 
 def create_html(language):
     'Creates a HTML string of most frequent words for a given language'
-    content = get_content_from_web(language)
-    title = '100 most frequent %s words' % language
-    html = '''
-    <html>
-        <head>
-            <title>%s</title>
-        </head>
-        <body>
-            <h1>%s</h1>
-            %s
-        </body>
-    </html>''' % (title, title, content)
-    return html
+    words = get_content_from_web(language)
+    return template('language',dict(language=language,words=words))
 
 @application.route('/static/:path#.+#', name='static')
 def static(path):
-    return bottle.static_file(path, root='static')
+    return static_file(path, root='static')
 
 @application.route('/')
 def static():
-    return '''
-<html>
-    	<head>
-		<title>Most Frequent Words</title>
-	</head>
-	<body>
-		<ul>
-		<li><a href='/french'>French</a></li>
-		<li><a href='/italian'>Italian</a></li>
-		<li><a href='/spanish'>Spanish</a></li>
-		</ul>
-	</body>
-</html>'''
+    return template('index')
 
 @application.route('/spanish')
 def spanish():
