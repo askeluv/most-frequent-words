@@ -1,8 +1,8 @@
 from bs4 import BeautifulSoup as bs
 import urllib2
-from bottle import Bottle, static_file, template
+from flask import Flask, render_template
 
-application = Bottle(__name__)
+application = Flask(__name__)
 URL = { 'Spanish' : 'http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/Spanish1000',
         'Italian' : 'http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/Italian1000',
         'French' : 'http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/French_wordlist_opensubtitles_5000'}
@@ -12,8 +12,7 @@ def get_content_from_web(language):
     url = URL[language]
     opener = urllib2.build_opener()
     opener.addheaders = [('User-agent', 'Mozilla/5.0')]
-    page = opener.open(url).read() # open and read page
-    soup = bs(page) # creates a BeautifulSoup object
+    soup = bs(opener.open(url).read()) # open, read page, and make BS object
     rows = soup.findAll('tr') # finds all <tr> elements
     
     # grabs the second column: an <a> element
@@ -25,30 +24,14 @@ def get_content_from_web(language):
         w['href'] = 'http://en.wiktionary.org%s#%s' % (w['href'],language)
     return words
 
-def create_html(language):
-    'Creates a HTML string of most frequent words for a given language'
-    words = get_content_from_web(language)
-    return template('language',dict(language=language,words=words))
-
-@application.route('/static/:path#.+#', name='static')
-def static(path):
-    return static_file(path, root='static')
-
 @application.route('/')
-def static():
-    return template('index')
+def index():
+    return render_template('index.html',languages=URL.keys())
 
-@application.route('/spanish')
-def spanish():
-    return create_html('Spanish')
-
-@application.route('/italian')
-def italian():
-    return create_html('Italian')
-
-@application.route('/french')
-def french():
-    return create_html('French')
+@application.route('/lang/<lang>')
+def lang(lang):
+    return render_template('language.html', language='%s' % title(lang),\
+			    words=get_content_from_web(language))
 
 if __name__ == '__main__':
-	application.run(host='localhost', port=8080, debug=True)
+	application.run(debug=True)

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    	<head>
+		<title>The 100 Most Frequent Words</title>
+	</head>
+	<body>
+		<h1>The 100 Most Frequent Words in ...</h1>
+		<ul>
+		{% for lang in languages %}
+		<li><a href="/lang/{{lang}}">{{lang}}</a></li>
+		{% endfor %}
+		</ul>
+		<a href="/static/test.txt">Test</a>
+	</body>
+</html>
