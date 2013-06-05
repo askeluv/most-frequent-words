@@ -1,1 +1,1 @@
-Testin!
+Hello, static world!
