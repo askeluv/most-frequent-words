@@ -10,6 +10,6 @@
 		<li><a href="{{ url_for('lang',lang=lang)}}">{{lang}}</a></li>
 		{% endfor %}
 		</ul>
-		<a href="/static/test.txt">Test</a>
+		<a href="{{ url_for('static', filename='test.txt')}}">Test</a>
 	</body>
 </html>
