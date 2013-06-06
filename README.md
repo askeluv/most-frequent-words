@@ -8,4 +8,4 @@ The next steps are to:
 2. Replace loading from websites with hard-coded templates to speed up load times
 3. Replace links to en.wiktionary.org with data loaded directly on the page when you click on words (using jQuery?)
 
-Here's an example of the site in action: [100 Most Frequent Italian Words](http://svanevik.me/most-frequent-words/italian)
+Here's the site in action: [100 Most Frequent  Words](http://svanevik.me/most-frequent-words)
