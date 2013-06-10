@@ -7,7 +7,7 @@ URL = { 'Spanish' : 'http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/Sp
         'Italian' : 'http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/Italian1000',
         'French' : 'http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/French_wordlist_opensubtitles_5000'}
 
-def from_web(language):
+def from_web(language,n=100):
     'Gets the 100 most frequent words from a wiktionary.org page'
     opener = urllib2.build_opener()
     opener.addheaders = [('User-agent', 'Mozilla/5.0')]
@@ -15,11 +15,20 @@ def from_web(language):
     rows = soup.findAll('tr') # finds all <tr> elements
     
     # skip header, get 100 rows, and the <a> element
-    words = [x.findAll('td')[1].a for x in rows[1:101]]
+    words = [x.findAll('td')[1].a for x in rows[1:n+1]]
+    ppm = []
+    try:
+	ppm = [x.findAll('td')[2] for x in rows[1:n+1]]
+    except:
+	print 'No second column found for ppm.'
     
     # make the relative paths absolute, and add language #
-    for w in words:
+    for i,w in enumerate(words):
         w['href'] = 'http://en.wiktionary.org%s#%s' % (w['href'],language)
+	w['num'] = i + 1
+	if ppm:
+	    w['ppm'] = ppm[i]
+    
     return words
 
 @application.route('/')
