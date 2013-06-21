@@ -8,4 +8,4 @@ The next steps are to:
 2. Replace loading from websites with local data files to speed up load times
 3. Add useful content about individual words
 
-Here's the site in action: [100 Most Frequent  Words](http://svanevik.me/most-frequent-words)
+Here's the site in action: [100 Most Frequent  Words](http://projects.svanevik.me/most-frequent-words)
