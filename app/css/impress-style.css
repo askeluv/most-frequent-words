@@ -728,3 +728,23 @@ body{
     font-size: 3em;
     font-weight: 100;
 }
+
+#word-list{
+    position: absolute;
+    right: 0;
+    width: 80px;
+    height: 1000px;
+    top: 0;
+    font-size: 14px;
+}
+
+#word-list a{
+    display: block;
+}
+
+.step .example{
+    position: absolute;
+    right: 100px;
+    width: 40px;
+    height: 40px;
+}

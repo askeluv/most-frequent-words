@@ -22,5 +22,8 @@
 
     <body ng-controller="mfwListCtrl">
 		<div ng-view> </div>
+        <div id="word-list" >
+            <a ng-repeat="w in words" href="#/word/{{w.rank}}" class="word">{{w.word}}</a>
+        </div>
 	</body>
 </html>
