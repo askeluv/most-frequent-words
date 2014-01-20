@@ -6,24 +6,26 @@
 
         <title data-ng-bind-template="MFW - {{lang}}">MfW</title>
 
+        <!--Style-->
+        <link href='http://fonts.googleapis.com/css?family=Lato:100,300,900' rel='stylesheet' type='text/css'>
+        <link href="css/default.css" rel="stylesheet" />
+        <link href="css/main.css" rel="stylesheet" />
+        <link href="css/mfw-list.css" rel="stylesheet" />
+        <link href="css/mfw-list-shortcut.css" rel="stylesheet" />
+
         <!--Scripts-->
         <!-- In production use:
             <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
         -->
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
         <script src="lib/angular/angular.js"></script>
         <script src="lib/angular/angular-route.js"></script>
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers.js"></script>
-
-        <!--Style-->
-        <link href='http://fonts.googleapis.com/css?family=Lato:100,300,900' rel='stylesheet' type='text/css'>
-        <link href="css/impress-style.css" rel="stylesheet" />
     </head>
 
     <body ng-controller="mfwListCtrl">
-		<div ng-view> </div>
-        <div id="word-list" >
-            <a ng-repeat="w in words" href="#/word/{{w.rank}}" class="word">{{w.word}}</a>
-        </div>
-	</body>
+            <div ng-view ng-animate="'view'" class="view"></div>
+            <div data-ng-include data-src="'templates/mfw-list-shortcut.html'"></div>
+    </body>
 </html>

@@ -1,0 +1,33 @@
+#mfw-list{
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+#mfw-list .word{
+    position: relative;
+    margin: auto;
+    text-align: center;
+    top: 50%;
+    -webkit-transform: translate(0, -50%);
+    font-size: 10em;
+    font-weight: 100;
+}
+
+#mfw-list .link.example{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: 50%;
+    transform: translate(0, -50%);
+    -webkit-transform: translate(0, -50%);
+    z-index: 1000;
+}
+
+#mfw-list .link.example.right{
+    right: 50px;
+}
+
+#mfw-list .link.example.left{
+    left: 50px;
+}

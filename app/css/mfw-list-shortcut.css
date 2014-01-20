@@ -1,0 +1,12 @@
+#word-list{
+    position: absolute;
+    right: 0;
+    width: 80px;
+    height: 1000px;
+    top: 0;
+    font-size: 14px;
+}
+
+#word-list a{
+    display: block;
+}
