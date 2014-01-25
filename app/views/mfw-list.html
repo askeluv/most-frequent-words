@@ -1,7 +1,7 @@
 
 <div id="mfw-list">
-    <a ng-if="w.rank > 1" class="top link" href="#/word/{{w.rank - 1}}"></a>
+    <a ng-if="w.rank > 1" class="top link" ng-href="#/word/{{w.rank - 1}}"></a>
     <div class="word">{{w.word}}</div>
-    <a class="example right link" href="#/word/{{w.rank}}/example/0"></a>
-    <a ng-if="w.rank < wordsLength" class="down link" href="#/word/{{w.rank + 1}}"></a>
+    <a class="example right link" ng-href="#/word/{{w.rank}}/example/0"></a>
+    <a ng-if="w.rank < wordsLength" class="down link" ng-href="#/word/{{w.rank + 1}}"></a>
 </div>
