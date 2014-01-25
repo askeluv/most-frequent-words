@@ -12,4 +12,6 @@ angular.module('controllers', []).
         var wRank = $routeParams.rank;
         $scope.exampleId = +$routeParams.id;
         $scope.w = $scope.words[wRank-1];
+        $scope.wordsLength = $scope.words.length;
+        $scope.examplesLength = $scope.w ? $scope.w.examples.length : null;
     }]);
