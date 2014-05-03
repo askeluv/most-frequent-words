@@ -12,6 +12,7 @@
         <link href="css/main.css" rel="stylesheet" />
         <link href="css/mfw-list.css" rel="stylesheet" />
         <link href="css/mfw-list-shortcut.css" rel="stylesheet" />
+        <link href="css/percent.css" rel="stylesheet" />
 
         <!--Scripts-->
         <!-- In production use:
@@ -25,7 +26,7 @@
     </head>
 
     <body ng-controller="mfwListCtrl"  ng-keyup="keyUp($event)">
-            <div ng-view ng-animate="'view'" class="view"></div>
-            <div data-ng-include data-src="'templates/mfw-list-shortcut.html'"></div>
+		    <div ng-view ng-animate="'view'" class="view"></div>
+            <div class="mfw-list-shortcut" data-ng-include data-src="'templates/mfw-list-shortcut.html'"></div>
     </body>
 </html>

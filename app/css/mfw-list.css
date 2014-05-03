@@ -6,7 +6,7 @@
 
 #mfw-list .word{
     position: relative;
-    margin: auto;
+	margin: 0 100px;
     text-align: center;
     top: 50%;
     -webkit-transform: translate(0, -50%);
