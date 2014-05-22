@@ -4,36 +4,27 @@ var ARROW_LEFT = 37;
 var ARROW_UP = 38;
 var ARROW_RIGHT = 39;
 var ARROW_DOWN = 40;
-var NUMBER_OF_WORDS = 4;
+var NUMBER_OF_WORDS = 100;
 var NUMBER_OF_EXAMPLES = 3;
 
-angular.module('controllers', []).
-    controller('mfwListCtrl', ['$scope', '$routeParams', '$location', function ($scope, $routeParams, $location) {
-        $scope.lang = "español";
+angular.module('controllers', [])
+	.controller('mfwListCtrl', ['$routeParams', '$location', '$http', function ($routeParams, $location, $http) {
+		var controller = this;
 
-        $scope.words = [
-	        {word:'de', rank:1, percent: 10, examples:['Soy de Madrid','De nada','De aqui para alla']},
-            {word:'para', rank:2, percent: 13, examples:['Para ya','Para que quieres eso?','Para para aaguaaas']},
-            {word:'casa', rank:3, percent: 15, examples:['Telefono, mi casa','El chico se casa mañana','Casa casa .. casablanca!']},
-            {word:'roca', rank:4, percent: 16, examples:['Hay rocas en el mar','Mi amigo Roca','Roca roca, .. roca and roll!']}
-        ];
+		controller.words = {};
+		$http.get('../../data/spanish.json').success(function(data) {
+			controller.words = data;
+			controller.onDataLoaded();
+		});
 
-		if($routeParams){
-			var wRank = $routeParams.rank;
-			$scope.exampleId = +$routeParams.id;
-			$scope.w = $scope.words[wRank-1];
-		}
-
-        $scope.wordsLength = NUMBER_OF_WORDS;
-        $scope.examplesLength = NUMBER_OF_EXAMPLES;
-
-
+		controller.wordsLength = NUMBER_OF_WORDS;
+		controller.examplesLength = NUMBER_OF_EXAMPLES;
 
         //////////////////////////////////////////////
         ///////////////// FUNCTIONS //////////////////
         //////////////////////////////////////////////
 
-        $scope.keyUp = function(keyEvent) {
+        this.keyUp = function(keyEvent) {
             var wordRank = +$routeParams.rank;
             var exampleId = $routeParams.id ? +$routeParams.id : -1;
 
@@ -41,49 +32,57 @@ angular.module('controllers', []).
             {
                 case ARROW_LEFT:
                     if(exampleId !== -1){
-                        $scope.navigateLeft(wordRank, exampleId);
+                        this.navigateLeft(wordRank, exampleId);
                     }
                     break;
                 case ARROW_UP:
                     if(wordRank > 1 && exampleId === -1) {
-                        $scope.navigateUp(wordRank);
+                        this.navigateUp(wordRank);
                     }
                     break;
                 case ARROW_RIGHT:
                     if(exampleId < NUMBER_OF_EXAMPLES-1){
-                        $scope.navigateRight(wordRank, exampleId);
+                        this.navigateRight(wordRank, exampleId);
                     }
                     break;
                 case ARROW_DOWN:
                     if(wordRank < NUMBER_OF_WORDS && exampleId === -1) {
-                        $scope.navigateDown(wordRank);
+                        this.navigateDown(wordRank);
                     }
                     break;
             }
         };
 
-        $scope.navigateLeft = function(wordRank, exampleId) {
+        this.navigateLeft = function(wordRank, exampleId) {
             if(exampleId === 0){
-                $scope.go('/word/'+ wordRank);
+                this.go('/word/'+ wordRank);
             }else{
-                $scope.go('/word/'+ wordRank +'/example/'+ (exampleId - 1));
+                this.go('/word/'+ wordRank +'/sentences/'+ (exampleId - 1));
             }
         };
 
-        $scope.navigateUp = function(wordRank) {
-            $scope.go('/word/'+ (wordRank - 1));
+        this.navigateUp = function(wordRank) {
+            this.go('/word/'+ (wordRank - 1));
         };
 
-        $scope.navigateRight = function(wordRank, exampleId) {
-            $scope.go('/word/'+ wordRank +'/example/'+ (exampleId + 1));
+        this.navigateRight = function(wordRank, exampleId) {
+            this.go('/word/'+ wordRank +'/sentences/'+ (exampleId + 1));
         };
 
-        $scope.navigateDown = function(wordRank) {
-            $scope.go('/word/'+ (wordRank + 1));
+        this.navigateDown = function(wordRank) {
+            this.go('/word/'+ (wordRank + 1));
         };
 
-        $scope.go = function (path) {
+        this.go = function (path) {
             $location.path(path);
         };
+
+		this.onDataLoaded = function() {
+			if($routeParams.rank){
+				var wRank = $routeParams.rank;
+				this.exampleId = +$routeParams.id;
+				this.currentWord = this.words[wRank-1];
+			}
+		};
 
     }]);

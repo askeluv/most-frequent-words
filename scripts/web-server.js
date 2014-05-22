@@ -5,6 +5,7 @@ var util = require('util'),
     fs = require('fs'),
     url = require('url'),
     events = require('events');
+//	MongoClient = require('mongodb').MongoClient;
 
 var DEFAULT_PORT = 8000;
 

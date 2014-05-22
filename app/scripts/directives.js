@@ -2,10 +2,16 @@
 
 /* Directives */
 
-
-angular.module('myApp.directives', []).
-  directive('appVersion', ['version', function(version) {
-    return function(scope, elm, attrs) {
-      elm.text(version);
-    };
-  }]);
+angular.module('directives', [])
+	.directive('shortcutList', function() {
+	    return {
+		    restrict: "E",
+		    templateUrl: "/app/templates/mfw-list-shortcut.html"
+	    }
+	  })
+	.directive('listPercentage', function() {
+	    return {
+		    restrict: "E",
+		    templateUrl: "/app/templates/mfw-percentage.html"
+	    }
+	  });

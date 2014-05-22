@@ -1,7 +1,9 @@
-<div data-ng-include data-src="'templates/mfw-percent.html'"></div>
+
+<list-percentage></list-percentage>
+
 <div id="mfw-list">
-    <a ng-if="exampleId == 0" class="left link" ng-href="#/word/{{w.rank}}"></a>
-    <a ng-if="exampleId != 0" class="example left link" ng-href="#/word/{{w.rank}}/example/{{exampleId-1}}"></a>
-    <div class="word example">{{w.examples[exampleId]}}</div>
-    <a ng-if="exampleId < examplesLength-1" class="example right link" ng-href="#/word/{{w.rank}}/example/{{exampleId+1}}"></a>
+    <a ng-if="wordsCtrl.exampleId == 0" class="left link" ng-href="#/word/{{wordsCtrl.currentWord.rank}}"></a>
+    <a ng-if="wordsCtrl.exampleId != 0" class="example left link" ng-href="#/word/{{wordsCtrl.currentWord.rank}}/sentences/{{wordsCtrl.exampleId-1}}"></a>
+    <div class="word example">{{wordsCtrl.currentWord.sentences[wordsCtrl.exampleId]}}</div>
+    <a ng-if="wordsCtrl.exampleId < wordsCtrl.examplesLength-1" class="example right link" ng-href="#/word/{{wordsCtrl.currentWord.rank}}/sentences/{{wordsCtrl.exampleId+1}}"></a>
 </div>
