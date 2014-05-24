@@ -1,0 +1,32 @@
+<!doctype html>
+<html ng-app="mfwApp">
+    <head>
+        <!--Meta-->
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <title data-ng-bind-template="MFW">MfW</title>
+
+        <!--Style-->
+        <link href='http://fonts.googleapis.com/css?family=Lato:100,300,900' rel='stylesheet' type='text/css'>
+        <link href="css/default.css" rel="stylesheet" />
+        <link href="css/main.css" rel="stylesheet" />
+        <link href="css/mfw-list.css" rel="stylesheet" />
+        <link href="css/mfw-list-shortcut.css" rel="stylesheet" />
+        <link href="css/percentage.css" rel="stylesheet" />
+
+        <!--Scripts-->
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="lib/angular/angular.js"></script>
+        <script src="lib/angular/angular-route.js"></script>
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers.js"></script>
+	    <script src="lib/angular/angular-resource.js"></script>
+	    <script src="scripts/services.js"></script>
+	    <script src="scripts/directives.js"></script>
+    </head>
+
+    <body ng-controller="mfwListCtrl as wordsCtrl" ng-keyup="wordsCtrl.keyUp($event)">
+		    <div ng-view class="view"></div>
+            <shortcut-list class="mfw-list-shortcut"></shortcut-list>
+    </body>
+</html>
