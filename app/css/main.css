@@ -1,0 +1,38 @@
+
+html, body, .view{
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: 'Lato', 'Helvetica', sans-serif;
+    background: #42A7BB;
+    color: #fff;
+}
+
+a,
+.progress-bar,
+.progress-bar .bar{
+    -webkit-transition: 0.5s;
+    -moz-transition:    0.5s;
+    -ms-transition:     0.5s;
+    -o-transition:      0.5s;
+    transition:         0.5s;
+}
+
+a{
+	color: inherit;
+	text-decoration: none;
+	padding: 0 0.1em;
+	opacity: 0.3;
+	filter:alpha(opacity=30); /* For IE8 and earlier */
+	text-shadow: -1px -1px 2px rgba(100,100,100,0.9);
+}
+
+a:hover,
+a:focus {
+    opacity: 1;
+    filter:alpha(opacity=90); /* For IE8 and earlier */
+    text-shadow: -1px -1px 2px rgba(100,100,100,0.5);
+}
+
