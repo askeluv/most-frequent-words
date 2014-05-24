@@ -11,7 +11,8 @@
     top: 50%;
     -webkit-transform: translate(0, -50%);
     font-size: 150px;
-    line-height: 150px;
+	font-size: 12vw;
+	line-height: 150px;
     font-weight: 100;
 }
 
