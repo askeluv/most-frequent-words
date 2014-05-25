@@ -22,7 +22,7 @@ angular.module('filters', [])
             }
         };
     })
-    .filter('to_trusted', ['$sce',
+    .filter('toTrusted', ['$sce',
         function($sce) {
             return function(text) {
                 return $sce.trustAsHtml(text);
