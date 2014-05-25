@@ -12,7 +12,7 @@ angular.module('controllers', [])
 		var controller = this;
 
 		controller.words = {};
-		$http.get('../../data/spanish.json').success(function(data) {
+		$http.get('http://localhost:4730/api/spanish').success(function(data) {
 			controller.words = data;
 			controller.onDataLoaded();
 		});
