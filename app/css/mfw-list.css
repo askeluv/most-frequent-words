@@ -110,3 +110,7 @@
 		border-top: 15px solid white;
 	}
 }
+
+#mfw-list .highlighted {
+	font-weight: 400;
+}
