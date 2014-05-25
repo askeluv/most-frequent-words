@@ -20,6 +20,12 @@ angular.module('controllers', [])
 		controller.wordsLength = NUMBER_OF_WORDS;
 		controller.examplesLength = NUMBER_OF_EXAMPLES;
 
+		$(".main-view").swipe({
+			swipe:(function(event, direction, distance, duration, fingerCount) {
+				this.onSwiped(event, direction, distance, duration, fingerCount);
+			}).bind(this)
+		});
+
         //////////////////////////////////////////////
         ///////////////// FUNCTIONS //////////////////
         //////////////////////////////////////////////
@@ -53,7 +59,35 @@ angular.module('controllers', [])
             }
         };
 
-        this.navigateLeft = function(wordRank, exampleId) {
+		this.onSwiped = function(event, direction, distance, duration, fingerCount) {
+			var parameters = this.getParameters();
+
+			switch(direction)
+			{
+				case "left":
+					if(parameters.exampleId < NUMBER_OF_EXAMPLES-1){
+						this.navigateRight(parameters.wordRank, parameters.exampleId);
+					}
+					break;
+				case "up":
+					if(parameters.wordRank < NUMBER_OF_WORDS && parameters.exampleId === -1) {
+						this.navigateDown(parameters.wordRank);
+					}
+					break;
+				case "right":
+					if(parameters.exampleId !== -1){
+						this.navigateLeft(parameters.wordRank, parameters.exampleId);
+					}
+					break;
+				case "down":
+					if(parameters.wordRank > 1 && parameters.exampleId === -1) {
+						this.navigateUp(parameters.wordRank);
+					}
+					break;
+			}
+		};
+
+		this.navigateLeft = function(wordRank, exampleId) {
             if(exampleId === 0){
                 this.go('/word/'+ wordRank);
             }else{
@@ -83,6 +117,12 @@ angular.module('controllers', [])
 				this.exampleId = +$routeParams.id;
 				this.currentWord = this.words[wRank-1];
 			}
+		};
+
+		this.getParameters = function() {
+			var wordRank = +$routeParams.rank;
+			var exampleId = $routeParams.id ? +$routeParams.id : -1;
+			return {"wordRank":wordRank, "exampleId":exampleId}
 		};
 
     }]);

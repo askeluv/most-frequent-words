@@ -1,7 +1,7 @@
 
 <list-percentage></list-percentage>
 
-<div id="mfw-list">
+<div id="mfw-list" ng-swipe-left="wordsCtrl.swipeLeft()" ng-swipe-left="wordsCtrl.swipeLeft()">
     <a ng-if="wordsCtrl.currentWord.rank > 1" class="top link" ng-href="#/word/{{wordsCtrl.currentWord.rank - 1}}"></a>
     <div class="word">{{wordsCtrl.currentWord.word}}</div>
     <a class="example right link" ng-href="#/word/{{wordsCtrl.currentWord.rank}}/sentences/0"></a>

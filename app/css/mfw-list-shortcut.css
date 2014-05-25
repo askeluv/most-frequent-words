@@ -12,6 +12,7 @@
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	z-index: 1001;
+	display: none;
 }
 
 #word-list{
