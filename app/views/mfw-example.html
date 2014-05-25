@@ -11,7 +11,7 @@
        ng-href="#/word/{{wordsCtrl.currentWord.rank}}/sentences/{{wordsCtrl.exampleId-1}}">
     </a>
     <div class="word example"
-         ng-bind-html="wordsCtrl.currentWord.sentences[wordsCtrl.exampleId] | highlight: wordsCtrl.currentWord.word | to-trusted">
+         ng-bind-html="wordsCtrl.currentWord.sentences[wordsCtrl.exampleId] | highlight: wordsCtrl.currentWord.word | toTrusted">
     </div>
     <a class="example right link"
        ng-if="wordsCtrl.exampleId < wordsCtrl.examplesLength-1"
