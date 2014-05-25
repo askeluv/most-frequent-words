@@ -2,8 +2,19 @@
 <list-percentage></list-percentage>
 
 <div id="mfw-list">
-    <a ng-if="wordsCtrl.exampleId == 0" class="left link" ng-href="#/word/{{wordsCtrl.currentWord.rank}}"></a>
-    <a ng-if="wordsCtrl.exampleId != 0" class="example left link" ng-href="#/word/{{wordsCtrl.currentWord.rank}}/sentences/{{wordsCtrl.exampleId-1}}"></a>
-    <div class="word example">{{wordsCtrl.currentWord.sentences[wordsCtrl.exampleId]}}</div>
-    <a ng-if="wordsCtrl.exampleId < wordsCtrl.examplesLength-1" class="example right link" ng-href="#/word/{{wordsCtrl.currentWord.rank}}/sentences/{{wordsCtrl.exampleId+1}}"></a>
+    <a class="left link"
+       ng-if="wordsCtrl.exampleId == 0"
+       ng-href="#/word/{{wordsCtrl.currentWord.rank}}">
+    </a>
+    <a class="example left link"
+       ng-if="wordsCtrl.exampleId != 0"
+       ng-href="#/word/{{wordsCtrl.currentWord.rank}}/sentences/{{wordsCtrl.exampleId-1}}">
+    </a>
+    <div class="word example"
+         ng-bind-html="wordsCtrl.currentWord.sentences[wordsCtrl.exampleId] | highlight: wordsCtrl.currentWord.word | toTrusted">
+    </div>
+    <a class="example right link"
+       ng-if="wordsCtrl.exampleId < wordsCtrl.examplesLength-1"
+       ng-href="#/word/{{wordsCtrl.currentWord.rank}}/sentences/{{wordsCtrl.exampleId+1}}">
+    </a>
 </div>

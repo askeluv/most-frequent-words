@@ -61,3 +61,7 @@
     border-right: 30px solid transparent;
     border-top: 30px solid white;
 }
+
+#mfw-list .highlighted {
+	font-weight: 400;
+}

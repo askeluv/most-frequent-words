@@ -4,7 +4,8 @@ var mfwApp = angular.module('mfwApp', [
     'ngRoute',
     'controllers',
 	'services',
-	'directives'
+	'directives',
+	'filters'
 ]);
 
 mfwApp.config(['$routeProvider',
