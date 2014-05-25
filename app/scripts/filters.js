@@ -12,7 +12,7 @@ angular.module('filters', [])
             if (text && (search || angular.isNumber(search))) {
                 text = text.toString();
                 search = search.toString();
-                return text.replace(new RegExp("\\b"+search+"\\b", 'gi'), '<span class="highlighted">$&</span>');
+                return text.replace(new RegExp("(\\W|^)"+search, 'gi'), '<span class="highlighted">$&</span>');
             } else {
                 return text;
             }
