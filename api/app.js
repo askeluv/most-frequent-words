@@ -15,7 +15,15 @@ function getFile(file) {
     return readJsonFileSync(filepath);
 }
 
-app.get('/:lang', function(req, res) {
+app.get('/api', function(req, res) {
+    res.header("Access-Control-Allow-Origin", "http://localhost");
+    res.header("Access-Control-Allow-Methods", "GET");
+    res.send("API is up and running...");
+});
+
+app.get('/api/:lang', function(req, res) {
+    res.header("Access-Control-Allow-Origin", "http://localhost");
+    res.header("Access-Control-Allow-Methods", "GET");
     res.json(getFile('data/' + req.params.lang + '.json'));
 });
 
