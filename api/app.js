@@ -16,13 +16,13 @@ function getFile(file) {
 }
 
 app.get('/api', function(req, res) {
-    res.header("Access-Control-Allow-Origin", "http://localhost");
+    res.header("Access-Control-Allow-Origin", "http://localhost:8000");
     res.header("Access-Control-Allow-Methods", "GET");
     res.send("API is up and running...");
 });
 
 app.get('/api/:lang', function(req, res) {
-    res.header("Access-Control-Allow-Origin", "http://localhost");
+    res.header("Access-Control-Allow-Origin", "http://localhost:8000");
     res.header("Access-Control-Allow-Methods", "GET");
     res.json(getFile('data/' + req.params.lang + '.json'));
 });
